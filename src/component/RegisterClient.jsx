@@ -2,7 +2,7 @@ import '../assets/css/style.css';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css'; 
 import Logo from './Logo';
 
-function Register(params) {
+function RegisterClient() {
     return(
         <main>
     <div class="container">
@@ -73,4 +73,4 @@ function Register(params) {
     );
 }
 
-export default Register;
+export default RegisterClient;
