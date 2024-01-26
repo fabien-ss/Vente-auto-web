@@ -1,3 +1,4 @@
+import React from 'react';
 import PlotChart from "./PlotChart";
 import {CategoryScale} from 'chart.js';
 import Chart from 'chart.js/auto'; 
@@ -11,7 +12,7 @@ function TestChart(){
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [{
                 label: 'Line Chart',
-                data: [65, 59, 80, 81, 56, 55, 40],
+                data: [65, 59, 80, 81, 93, 95, 100],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1

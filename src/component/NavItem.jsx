@@ -1,3 +1,4 @@
+import React from 'react';
 function NavItem(props) {
     return(
         <li class="nav-item">

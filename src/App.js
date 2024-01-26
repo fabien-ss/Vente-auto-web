@@ -1,17 +1,29 @@
-import './App.css';
-import Header from './component/Header';
-import TestChart from './component/TestChart';
-import SideBar from './component/SideBar';
+import React from 'react';
+import './assets/css/App.css';
+import LoginClient from './pages/LoginClient';
+import LoginAdmin from './pages/LoginAdmin';
+import RegisterClient from './pages/RegisterClient';
+import RegisterAdmin from './pages/RegisterAdmin';
+import BackOffice from './pages/BackOffice';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import FrontOffice from './pages/FrontOffice';
+import Chat from './pages/Chat';
 
-function App() {
+function App() {  
   return (
     <>
-      <Header></Header>
-      <SideBar></SideBar>
-      <main id="main" class="main">
-
-      <TestChart></TestChart>
-      </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="login-client" element={<LoginClient />}/>
+        <Route path="register-client" element={<RegisterClient />} />
+        <Route path="/" element={<LoginClient />}/>
+        <Route path="login-admin" element={<LoginAdmin />}/>
+        <Route path="register-admin" element={<RegisterAdmin />} />
+        <Route path="back-office" element={<BackOffice />} />
+        <Route path="front-office" element={< FrontOffice />} />
+        <Route path="chat" element={< Chat />} />
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }

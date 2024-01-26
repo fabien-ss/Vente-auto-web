@@ -1,3 +1,4 @@
+import React from 'react';
 import { Line, Bar, Pie } from 'react-chartjs-2';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css'; 
 

@@ -1,3 +1,4 @@
+import React from 'react';
 function Logo (props){
     return(
         <div class="d-flex align-items-center justify-content-between">
