@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../assets/css/style.css';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css';
+import { sendDataToApi } from '../fonction/fonction';
+// Avant
+// import { useHistory } from 'react-router-dom';
+
+// Après
+import { useNavigate } from 'react-router-dom';
+
 function LoginClient() {
 
+  const navigate = useNavigate();
     const [state, setState] = useState({
       email: "",
-      password: ""
+      motDePasse: ""
     })
 
     const handleChange = (event) => {
@@ -17,7 +25,23 @@ function LoginClient() {
       })  
     }
 
-    const sendData = () => {
+    useEffect(() => {
+      console.log("state updated", state);
+    }, [state]);
+
+    async function sendData(event){
+      event.preventDefault();
+      console.log("preparing to send data");
+      const response = await sendDataToApi('http://localhost:8080/admin/login', state, 'POST');
+      try{
+        console.log("response", response);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", response.data.user);
+        navigate("/back-office");
+      }catch(Error){
+        console.log("response", response);
+        alert(response.data.error);
+      }
       console.log("data ", state);
     }
 
@@ -39,7 +63,7 @@ function LoginClient() {
                         <p class="text-center small">Enter your email & password to login</p>
                       </div>
     
-                      <form class="row g-3 needs-validation" novalidate action='back-office'>
+                      <form onSubmit={(event) => sendData(event)}>
     
                         <div class="col-12">
                           <label for="yourUsername" class="form-label">Email</label>
@@ -52,7 +76,7 @@ function LoginClient() {
     
                         <div class="col-12">
                           <label for="yourPassword" class="form-label">Password</label>
-                          <input type="password" name="password" onChange={e => handleChange(e)} class="form-control" id="yourPassword" required/>
+                          <input type="password" name="motDePasse" onChange={e => handleChange(e)} class="form-control" id="yourPassword" required/>
                           <div class="invalid-feedback">Please enter your password!</div>
                         </div>
     
@@ -63,7 +87,7 @@ function LoginClient() {
                           </div>
                         </div>
                         <div class="col-12">
-                          <button class="btn btn-primary w-100" type="submit" onClick={ () => sendData }>Login</button>
+                          <button class="btn btn-primary w-100" type="submit">Login</button>
                         </div>
                         <div class="col-12">
                           <p class="small mb-0">Don't have account? <a href='register-admin' > Create an account here </a></p>
