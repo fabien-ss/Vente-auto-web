@@ -15,9 +15,15 @@ function SideBar() {
                 </Link>
             </li>
             <li className="nav-item">
-                <Link to="inventory" className="nav-link">
+                <Link to="/back-office/statistique" className="nav-link">
                     <i className="bi bi-boxes"></i>
-                    <span>Inventory</span>
+                    <span>Statistiques</span>
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/back-office/element" className="nav-link">
+                    <i className="bi bi-boxes"></i>
+                    <span>Element</span>
                 </Link>
             </li>
             {/* Add more navigation items here */}
