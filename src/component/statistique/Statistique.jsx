@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { API_URL } from "../../constante/constante";
 import { sendGetRequest } from "../../fonction/fonction";
@@ -19,14 +19,8 @@ function Statistique(){
     const [modeleVenduParAnnnee, setModeleVenduParAnnnee] = useState();
     const [annee, setAnnee] = useState(new Date().getFullYear());
     const [anneeMarque, setAnneeMarque] = useState(new Date().getFullYear());
-    const [anneeModele, setAnneeModele] = useState(new Date().getFullYear());
-
-
-    useEffect(() => {
-        update();
-      }, []); 
-    
-     async function update(){
+    const [anneeModele, setAnneeModele] = useState(new Date().getFullYear());   
+      const update = useCallback(async () => {
         if(annee === "" | annee === null | annee.length === 0) setAnnee(new Date().getFullYear());
         if(anneeMarque === "" | anneeMarque === null | anneeMarque.length === 0) setAnneeMarque(new Date().getFullYear());
         if(anneeModele === "" | anneeMarque === null | anneeModele.length === 0) setAnneeModele(new Date().getFullYear());
@@ -42,8 +36,12 @@ function Statistique(){
         setMarqueVenduParAnnnee(data2.data.stat); 
         setModeleVenduParAnnnee(data3.data.stat);
         console.log("data ", data.data.pending);
-      }
+    }, [annee, anneeMarque, anneeModele]); // Add all dependencies here
 
+    useEffect(() => {
+        update();
+      }, [update]); 
+    
     return(
             <div className="container py-4">
                 <div className="row">
