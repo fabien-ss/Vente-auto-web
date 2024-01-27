@@ -3,6 +3,7 @@ import '../assets/css/style.css';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css'; 
 import { sendDataToApi } from '../fonction/fonction';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../constante/constante';
 
 function RegisterClient() {
 
@@ -29,7 +30,8 @@ function RegisterClient() {
 
   const sendData = async (event) => {
     event.preventDefault();
-    const response = await sendDataToApi('http://localhost:8080/admin/signin', state, 'POST');
+    const url = API_URL + "/admin/signin";
+    const response = await sendDataToApi(url, state, 'POST');
     try{
       console.log("response", response);
       localStorage.setItem("token", response.data.token);

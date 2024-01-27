@@ -1,5 +1,6 @@
 import React, { useState }  from "react";
 import { sendDataToApi } from "../../fonction/fonction";
+import { API_URL } from "../../constante/constante";
 
 function Marque(){
 
@@ -11,7 +12,8 @@ function Marque(){
         const data = {
             "nom": marque
         };
-        const response = await sendDataToApi('http://localhost:8080/marque', data, "POST");
+        const url = API_URL + "/marque";
+        const response = await sendDataToApi(url, data, "POST");
         alert(response.status);
     }
 

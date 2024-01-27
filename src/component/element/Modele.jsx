@@ -2,6 +2,7 @@ import React ,{ useEffect, useState } from "react";
 import "./Modele.css";
 import { sendGetRequest, sendDataToApi } from "../../fonction/fonction";
 import { Link, Element } from 'react-scroll';
+import { API_URL } from "../../constante/constante";
 
 function Modele(){
 
@@ -13,9 +14,11 @@ function Modele(){
 
     useEffect(() => {
         async function fetchMarques() {
-            const data = await sendGetRequest("http://localhost:8080/marque", {}, "GET");
+            const url = API_URL + "/marque";
+            const data = await sendGetRequest(url, {}, "GET");
             setListMarque(data);
-            const axe = await sendGetRequest("http://localhost:8080/axe", {}, "GET");
+            const url_axe = API_URL + "/axe";
+            const axe = await sendGetRequest(url_axe, {}, "GET");
             setAxe(axe.data.axes);
         }
         fetchMarques();

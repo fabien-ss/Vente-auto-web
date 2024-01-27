@@ -11,10 +11,10 @@ import Specification from "./Specification";
 
 function Element(){
     return(
-        <div className="container" style={{float: "right", marginTop: "5%"}}>
+        <div className="row">
             <h1>Element Option</h1>
             <ElementLink />
-                <div className="container">
+                <div className="row">
                     <Routes>
                         <Route path="marque" element={<Marque />} />
                         <Route path="modele" element={<Modele />} />

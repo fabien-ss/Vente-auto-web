@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './card/CardAnnonce'; // Supposons que vous avez un composant Card pour afficher chaque annonce
-
-const annonces = [
-  { id: 1, title: 'Voiture A', description: 'Description de la voiture A', price: '20000€' },
-  { id: 2, title: 'Voiture B', description: 'Description de la voiture B', price: '15000€' },
-  { id: 3, title: 'Voiture C', description: 'Description de la voiture C', price: '25000€' },
-  // Ajoutez plus d'annonces ici
-];
+import { sendGetRequest } from "../../fonction/fonction";
+import { API_URL } from '../../constante/constante';
 
 function ListeAnnonce() {
+
+  const [annonces, setAnnonce] = useState();
+
+  useEffect(() => {
+    async function fetchAnnonce() {
+        const url = API_URL + "/annonce/admin/10";
+        const data = await sendGetRequest(url, {}, "GET");
+        setAnnonce(data.data.pending);
+        console.log("data ", data.data.pending);
+      }
+      fetchAnnonce();
+  }, []); 
+
   return (
-    <div className="liste-annonce" style={{marginTop: "5%", width: "100%"}}>
-      {annonces.map(annonce => (
-        <Card key={annonce.id} title={annonce.title} description={annonce.description} price={annonce.price} />
+    <div className="liste-annonce container" style={{marginTop: "5%", width: "100%", margin:"right"}}>
+      {annonces?.map(annonce => (
+        <Card annonce={annonce}/>
       ))}
     </div>
   );

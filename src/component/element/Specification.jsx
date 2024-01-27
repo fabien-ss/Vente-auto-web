@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { sendDataToApi } from "../../fonction/fonction";
+import { API_URL } from "../../constante/constante";
 
 
 function Specification(){
@@ -29,7 +30,8 @@ function Specification(){
             "details": details
         };
         console.log("data ",data);
-        const response = await sendDataToApi('http://localhost:8080/axe', data, "POST");
+        const url = API_URL + "/axe";
+        const response = await sendDataToApi(url, data, "POST");
         alert(response.status);
     }
 

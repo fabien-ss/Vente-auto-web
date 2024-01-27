@@ -1,0 +1,1 @@
+export const API_URL = "http://sweltering-slope-production.up.railway.app";

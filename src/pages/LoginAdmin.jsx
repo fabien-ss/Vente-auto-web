@@ -7,6 +7,7 @@ import { sendDataToApi } from '../fonction/fonction';
 
 // Après
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../constante/constante';
 
 function LoginClient() {
 
@@ -32,7 +33,8 @@ function LoginClient() {
     async function sendData(event){
       event.preventDefault();
       console.log("preparing to send data");
-      const response = await sendDataToApi('http://localhost:8080/admin/login', state, 'POST');
+      const url = API_URL + "/admin/login";
+      const response = await sendDataToApi(url, state, 'POST');
       try{
         console.log("response", response);
         localStorage.setItem("token", response.data.token);

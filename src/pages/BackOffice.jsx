@@ -11,7 +11,7 @@ function BackOffice() {
         <>
             <Header />
             <SideBar />
-            <div className="backoffice-content">
+            <div className="backoffice-content container" style={{marginTop: "10%", marginLeft: "20%"}}>
                 <Routes>
                     <Route path="annonce" element={<ListeAnnonce/>} />
                     <Route path="element/*" element={<Element />} />
