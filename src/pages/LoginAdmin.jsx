@@ -36,7 +36,7 @@ function LoginClient() {
       const url = API_URL + "/admin/login";
       const response = await sendDataToApi(url, state, 'POST');
       try{
-        if(response.message == "error"){
+        if(response.message === "error"){
           throw new Error(response.message);
         }
         console.log("response", response);
