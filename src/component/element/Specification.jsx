@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { sendDataToApi } from "../../fonction/fonction";
 import { API_URL } from "../../constante/constante";
 
@@ -47,7 +45,7 @@ function Specification(){
                 ))}
                 <div className="d-flex">
                     <button className="btn btn-primary col-3 me-3" type="button" onClick={addDetailField}>
-                        <FontAwesomeIcon icon={faPlus} />
+                        +
                     </button>
                     <button type="submit" className="btn btn-primary" >Valider</button>
                 </div>
