@@ -5,11 +5,11 @@ import { API_URL } from "../../constante/constante";
 
 function Modele(){
 
-    const [marque] = useState();
+    const [marque, setMarque] = useState();
     const [listMarque, setListMarque] = useState([]);
     const [axe, setAxe] = useState([]);
     const [displayAxe, setDisplayAxe] = useState(false);
-
+    
     useEffect(() => {
         async function fetchMarques() {
             const url = API_URL + "/marque";
@@ -36,8 +36,6 @@ function Modele(){
                 return { idAxe: a.idAxe, axeValue: checkedBoxes };
             })
         };
-        setModel(model);
-        console.log(model);
         const response = await sendDataToApi('http://localhost:8080/modele', model, "POST");
         alert(response.status);
     }
