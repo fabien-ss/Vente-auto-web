@@ -1,7 +1,6 @@
 import React ,{ useEffect, useState } from "react";
 import "./Modele.css";
 import { sendGetRequest, sendDataToApi } from "../../fonction/fonction";
-import { Link, Element } from 'react-scroll';
 import { API_URL } from "../../constante/constante";
 
 function Modele(){
