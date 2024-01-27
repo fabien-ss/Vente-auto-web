@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { API_URL } from "../../constante/constante";
 import { sendGetRequest } from "../../fonction/fonction";
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
 import "../../assets/vendor/bootstrap/css/bootstrap.min.css"
 import { Bar } from 'react-chartjs-2';
 
@@ -24,25 +23,7 @@ function Statistique(){
 
 
     useEffect(() => {
-        async function fetchAnnonce() {
-           
-            if(annee === "" | annee === null | annee.length === 0) setAnnee(new Date().getFullYear());
-            if(anneeMarque === "" | anneeMarque === null | anneeMarque.length === 0) setAnneeMarque(new Date().getFullYear());
-            if(anneeModele === "" | anneeMarque === null | anneeModele.length === 0) setAnneeModele(new Date().getFullYear());
-            
-            const url1 = API_URL + "/statistiques/" + annee;
-            const url2 = API_URL + "/statistiques/" + anneeMarque + "/marque";
-            const url3 = API_URL + "/statistiques/" + anneeModele + "/modele";
-            console.log(url1);
-            const data = await sendGetRequest(url1, {}, "GET");
-            const data2 = await sendGetRequest(url2, {}, "GET");
-            const data3 = await sendGetRequest(url3, {}, "GET");
-            setNombreAnnonceParAnnee(data.data.stat);
-            setMarqueVenduParAnnnee(data2.data.stat); 
-            setModeleVenduParAnnnee(data3.data.stat);
-            console.log("data ", data.data.pending);
-          }
-          fetchAnnonce();
+        update();
       }, []); 
     
      async function update(){

@@ -5,11 +5,10 @@ import { API_URL } from "../../constante/constante";
 
 function Modele(){
 
-    const [marque, setMarque] = useState();
+    const [marque] = useState();
     const [listMarque, setListMarque] = useState([]);
     const [axe, setAxe] = useState([]);
     const [displayAxe, setDisplayAxe] = useState(false);
-    const [model, setModel] = useState({});
 
     useEffect(() => {
         async function fetchMarques() {

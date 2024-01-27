@@ -3,7 +3,7 @@ import { sendDataToApi } from "../../../fonction/fonction";
 import { API_URL } from "../../../constante/constante";
 function CardAnnonce({ annonce, reload }) 
 {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup] = useState(false);
   const [idAnnonce, setIdAnnonce] = useState();
   const [etat, setEtat] = useState();
  
@@ -15,7 +15,7 @@ function CardAnnonce({ annonce, reload })
      const url = API_URL + "/annonce/admin";
      console.log("url: " + url);
      console.log("data ",data);
-     const response = await sendDataToApi(url,data, "PUT");
+     await sendDataToApi(url,data, "PUT");
      reload();
   };
 

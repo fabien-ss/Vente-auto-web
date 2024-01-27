@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../assets/css/style.css';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css';
 import { sendDataToApi } from '../fonction/fonction';
-// Avant
-// import { useHistory } from 'react-router-dom';
 
-// Après
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constante/constante';
 
