@@ -26,6 +26,13 @@ function SideBar() {
                     <span>Element</span>
                 </Link>
             </li>
+            
+            <li className="nav-item">
+                <Link to="/back-office/ajouterAdmin" className="nav-link">
+                    <i className="bi bi-boxes"></i>
+                    <span>Ajouter un nouvel administrateur</span>
+                </Link>
+            </li>
             {/* Add more navigation items here */}
         </ul>
       </aside>  

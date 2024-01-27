@@ -68,8 +68,8 @@ function Modele(){
                     <div className="row">
                         <h1>Laissez vide si information inutile</h1>
                         {axe.map((a, index) => (
-                            <div className="card me-3" > 
-                                <img width="100%" class="card-img-top" src = "https://static.vecteezy.com/ti/vecteur-libre/p1/3555424-gear-settings-thin-line-symbol-cogwheel-icon-innovation-logo-vector-illustration-gratuit-vectoriel.jpg"/>
+                            <div className="card me-3 col-3" > 
+                                <img class="card-img-top" src = "https://static.vecteezy.com/ti/vecteur-libre/p1/3555424-gear-settings-thin-line-symbol-cogwheel-icon-innovation-logo-vector-illustration-gratuit-vectoriel.jpg"/>
                                 <div className="card-header">
                                     {a.nom}
                                     </div>

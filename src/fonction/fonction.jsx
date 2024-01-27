@@ -1,6 +1,8 @@
 export async function sendDataToApi(url, data, method){
+    const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer ${token}`);
     const body = JSON.stringify(data);
     const response = await fetch(url, {
        method: method,
@@ -19,9 +21,10 @@ export async function sendDataToApi(url, data, method){
 
 
 export async function sendGetRequest(url, data, method) {
+    const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
+    headers.append('Authorization', `Bearer ${token}`);
     const fetchOptions = {
         method: method,
         headers: headers,

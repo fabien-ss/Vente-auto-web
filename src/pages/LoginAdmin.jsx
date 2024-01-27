@@ -36,10 +36,14 @@ function LoginClient() {
       const url = API_URL + "/admin/login";
       const response = await sendDataToApi(url, state, 'POST');
       try{
+        if(response.message == "error"){
+          throw new Error(response.message);
+        }
         console.log("response", response);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", response.data.user);
-        navigate("/back-office");
+        console.log("token", response);
+       navigate("/back-office");
       }catch(Error){
         console.log("response", response);
         alert(response.data.error);

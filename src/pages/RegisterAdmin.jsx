@@ -5,7 +5,7 @@ import { sendDataToApi } from '../fonction/fonction';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constante/constante';
 
-function RegisterClient() {
+function RegisterAdmin() {
 
   const navigate = useNavigate();
   const [state, setState] = useState({
@@ -34,9 +34,9 @@ function RegisterClient() {
     const response = await sendDataToApi(url, state, 'POST');
     try{
       console.log("response", response);
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", response.data.user);
-      navigate("/back-office");
+   //   localStorage.setItem("token", response.data.token);
+    //  localStorage.setItem("user", response.data.user);
+  //    navigate("/back-office");
     }catch(Error){
       console.log("response", response);
       alert(response.data.error);
@@ -50,10 +50,10 @@ function RegisterClient() {
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="">
             
 
-              <div class="card mb-3">
+              <div class="card">
 
                 <div class="card-body">
 
@@ -94,9 +94,6 @@ function RegisterClient() {
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Create Account</button>
                     </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="login-admin">Log in</a></p>
-                    </div>
                   </form>
 
                 </div>
@@ -114,4 +111,4 @@ function RegisterClient() {
     );
 }
 
-export default RegisterClient;
+export default RegisterAdmin;

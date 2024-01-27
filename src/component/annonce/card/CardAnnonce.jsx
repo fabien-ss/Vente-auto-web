@@ -1,10 +1,28 @@
 import React, {useState} from "react";
-function CardAnnonce({ annonce }) {
+import { sendDataToApi } from "../../../fonction/fonction";
+import { API_URL } from "../../../constante/constante";
+function CardAnnonce({ annonce, reload }) 
+{
   const [showPopup, setShowPopup] = useState(false);
+  const [idAnnonce, setIdAnnonce] = useState();
+  const [etat, setEtat] = useState();
  
-  const handleClick = () => {
-     setShowPopup(!showPopup);
+  const handleClick = async () => {
+     const data = {
+      "idAnnonce": idAnnonce,
+      "etat": etat
+     };
+     const url = API_URL + "/annonce/admin";
+     console.log("url: " + url);
+     console.log("data ",data);
+     const response = await sendDataToApi(url,data, "PUT");
+     reload();
   };
+
+  const handleChange = (event) => {
+    setIdAnnonce(annonce.idAnnonce);
+    setEtat(event.target.value);
+  }
  
   return (
      <div className="card">
@@ -14,7 +32,12 @@ function CardAnnonce({ annonce }) {
              <h5 className="card-title">Description: {annonce.description}</h5>
              <p className="card-text">Annonce: {annonce.annee}</p>
              <p className="card-text">Kilometrage: {annonce.kilometrage}</p>
-             <button className="btn btn-primary" onClick={handleClick}>View Images</button>
+              <label>Etat</label>
+              <select className="form-select" onChange={e => handleChange(e)}>
+                  <option value={20}>Valider</option>
+                  <option value={-10}>Retirer</option>
+              </select>
+             <button className="btn btn-primary" type="button" onClick={e => {handleClick()}}>Valider</button>
          </div>
          {showPopup && (
            <div className="modal" tabIndex="-1" role="dialog">

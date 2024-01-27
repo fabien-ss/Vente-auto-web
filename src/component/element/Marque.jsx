@@ -13,6 +13,7 @@ function Marque(){
             "nom": marque
         };
         const url = API_URL + "/marque";
+        console.log("api url ", url);
         const response = await sendDataToApi(url, data, "POST");
         alert(response.status);
     }
