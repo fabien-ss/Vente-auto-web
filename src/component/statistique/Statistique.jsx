@@ -3,9 +3,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { API_URL } from "../../constante/constante";
 import { sendGetRequest } from "../../fonction/fonction";
 import "../../assets/vendor/bootstrap/css/bootstrap.min.css"
-import { Bar } from 'react-chartjs-2';
+import { Bar} from 'react-chartjs-2';
 
 import { CategoryScale, Chart, LinearScale, BarElement } from 'chart.js';
+
 
 
 Chart.register(LinearScale);
@@ -20,7 +21,8 @@ function Statistique(){
     const [annee, setAnnee] = useState(new Date().getFullYear());
     const [anneeMarque, setAnneeMarque] = useState(new Date().getFullYear());
     const [anneeModele, setAnneeModele] = useState(new Date().getFullYear());   
-      const update = useCallback(async () => {
+
+    const update = useCallback(async () => {
         if(annee === "" | annee === null | annee.length === 0) setAnnee(new Date().getFullYear());
         if(anneeMarque === "" | anneeMarque === null | anneeMarque.length === 0) setAnneeMarque(new Date().getFullYear());
         if(anneeModele === "" | anneeMarque === null | anneeModele.length === 0) setAnneeModele(new Date().getFullYear());
@@ -67,8 +69,10 @@ function Statistique(){
                                 },
                             }}
                         />
-                    </div>
 
+                    
+                    </div>
+                            
                 </div>
                 <div className="row">
                     <div className="col-12">
@@ -110,9 +114,9 @@ function Statistique(){
                             }}
                             options={{
                                 scales: {
-                                    yAxes: [{
+                                    xAxes:  [{
                                         ticks: {
-                                            beginAtZero: true,
+                                            beginAtZero: false,
                                         },
                                     }],
                                 },

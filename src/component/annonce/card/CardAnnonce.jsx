@@ -33,11 +33,19 @@ function CardAnnonce({ annonce, reload })
              <p className="card-text">Annonce: {annonce.annee}</p>
              <p className="card-text">Kilometrage: {annonce.kilometrage}</p>
               <label>Etat</label>
-              <select className="form-select" onChange={e => handleChange(e)}>
-                  <option value={20}>Valider</option>
-                  <option value={-10}>Retirer</option>
-              </select>
-             <button className="btn btn-primary" type="button" onClick={e => {handleClick()}}>Valider</button>
+             
+              <div className="row">
+                <div className="col-6">
+                  <select className="form-select" onChange={e => handleChange(e)}>
+                    <option value={20}>Valider</option>
+                    <option value={-10}>Retirer</option>
+                  </select>
+                </div>
+                <div className="col-6">
+                  <button className="btn btn-primary" type="button" onClick={e => {handleClick()}}>Valider</button>
+
+                </div>
+              </div>
          </div>
          {showPopup && (
            <div className="modal" tabIndex="-1" role="dialog">

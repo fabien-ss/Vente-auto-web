@@ -10,8 +10,8 @@ function LoginClient() {
 
   const navigate = useNavigate();
     const [state, setState] = useState({
-      email: "",
-      motDePasse: ""
+      email: "fabien@test.test",
+      motDePasse: "fabien"
     })
 
     const handleChange = (event) => {
@@ -72,14 +72,14 @@ function LoginClient() {
                           <label for="yourUsername" class="form-label">Email</label>
                           <div class="input-group has-validation">
                             <span class="input-group-text" id="inputGroupPrepend">@</span>
-                            <input type="email" name="email" onChange={e => handleChange(e)} class="form-control" id="yourUsername" required/>
+                            <input type="email" name="email" value={state.email} onChange={e => handleChange(e)} class="form-control" id="yourUsername" required/>
                             <div class="invalid-feedback">Please enter your email.</div>
                           </div>
                         </div>
     
                         <div class="col-12">
                           <label for="yourPassword" class="form-label">Password</label>
-                          <input type="password" name="motDePasse" onChange={e => handleChange(e)} class="form-control" id="yourPassword" required/>
+                          <input type="password" name="motDePasse" value={state.motDePasse} onChange={e => handleChange(e)} class="form-control" id="yourPassword" required/>
                           <div class="invalid-feedback">Please enter your password!</div>
                         </div>
     

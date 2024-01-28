@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 export async function sendDataToApi(url, data, method){
     const token = localStorage.getItem('token');
     const headers = new Headers();
@@ -51,4 +53,16 @@ export async function sendGetRequest(url, data, method) {
 
     // If there's no body, you might return something else, like the status or headers
     return response.status;
+}
+
+export function logout(){
+    localStorage.clear();
+}
+
+export function CheckToken(){
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+    if(token === undefined || token === null){
+        navigate("/");
+    }
 }
