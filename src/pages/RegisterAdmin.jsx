@@ -40,7 +40,7 @@ function RegisterAdmin() {
       alert(response.data.error);
     }
     console.log("data ", response);
-    location.reload();
+    window.location.reload();
   }
     return(
         <main>

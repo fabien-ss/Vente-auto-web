@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Card from './card/CardAnnonce'; 
+import { API_URL } from '../../constante/constante';
+import { sendGetRequest } from '../../fonction/fonction';
 
-function ListeAnnonce({fetchAnnonce}) {
+function ListeAnnonce() {
   const [annonce, setAnnonce] = useState();
 
     useEffect(() => {
@@ -18,8 +20,8 @@ function ListeAnnonce({fetchAnnonce}) {
   
   return (
     <div className="liste-annonce container" style={{marginTop: "5%", width: "100%", margin:"right"}}>
-      {annonces?.map(annonce => (
-        <Card annonce={annonce} reload={fetchAnnonce}/>
+      {annonce?.map(annonce1 => (
+        <Card annonce={annonce1} reload={fetchAnnonce}/>
       ))}
     </div>
   );
