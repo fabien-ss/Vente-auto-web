@@ -20,6 +20,7 @@ function ListeAnnonce() {
   
   return (
     <div className="liste-annonce container" style={{marginTop: "5%", width: "100%", margin:"right"}}>
+      <h1>Liste des annonces</h1>
       {annonce?.map(annonce1 => (
         <Card annonce={annonce1} reload={fetchAnnonce}/>
       ))}
