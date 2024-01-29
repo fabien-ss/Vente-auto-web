@@ -5,7 +5,6 @@ import { sendGetRequest } from '../../fonction/fonction';
 
 function ListeAnnonce() {
   const [annonce, setAnnonce] = useState();
-
     useEffect(() => {
       fetchAnnonce();
     }, []); 
@@ -19,12 +18,13 @@ function ListeAnnonce() {
 
   
   return (
-    <div className="liste-annonce container" style={{marginTop: "5%", width: "100%", margin:"right"}}>
-      <h1>Liste des annonces</h1>
-      {annonce?.map(annonce1 => (
-        <Card annonce={annonce1} reload={fetchAnnonce}/>
-      ))}
-    </div>
+    <div className="liste-annonce container" style={{marginTop: "2%", width: "100%", margin:"right"}}>
+      
+          <h1>Liste des annonces</h1>
+          {annonce?.map(annonce1 => (
+            <Card annonce={annonce1} reload={fetchAnnonce}/>
+            ))}
+      </div>
   );
 }
 

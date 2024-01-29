@@ -8,9 +8,7 @@ import Element from "../component/element/Element";
 import Statistique from "../component/statistique/Statistique";
 import RegisterAdmin from "./RegisterAdmin";
 import { useEffect } from "react";
-
 function BackOffice() {
-  // Fonction pour vérifier la présence d'un token dans le localStorage
   const checkToken = () => {
     const token = localStorage.getItem("token"); // Remplacez "votreNomDeToken" par le nom réel de votre token
 

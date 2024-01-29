@@ -16,7 +16,7 @@ function CardAnnonce({ annonce, reload })
      console.log("url: " + url);
      console.log("data ",data);
      await sendDataToApi(url,data, "PUT");
-     reload();
+     window.location.reload();
   };
 
   const handleChange = (event) => {
@@ -36,7 +36,8 @@ function CardAnnonce({ annonce, reload })
              
               <div className="row">
                 <div className="col-6">
-                  <select className="form-select" onChange={e => handleChange(e)}>
+                  <select className="form-select" onChange={e => handleChange(e)} value={20}>
+                    <option>Action</option>
                     <option value={20}>Valider</option>
                     <option value={-10}>Retirer</option>
                   </select>
