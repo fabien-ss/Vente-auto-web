@@ -31,6 +31,7 @@ function Specification(){
         const url = API_URL + "/axe";
         const response = await sendDataToApi(url, data, "POST");
         alert(response.status);
+        window.location.reload();
     }
 
     return(

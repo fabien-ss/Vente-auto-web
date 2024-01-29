@@ -21,7 +21,7 @@ function BackOffice() {
                     <Route path="statistique" element={<Statistique />} />
                     <Route path="ajouterAdmin" element={<RegisterAdmin />} />
                     {/* Define other child routes here */}
-                    <Route index element={<h1>Hello5</h1>} /> {/* Default route */}
+                    <Route index element={<ListeAnnonce />} /> {/* Default route */}
                 </Routes>
             </div>
             <Outlet /> {/* This is where child routes will be rendered */}
