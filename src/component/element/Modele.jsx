@@ -38,7 +38,7 @@ function Modele(){
         };
         const url = API_URL + "/modele";
         const response = await sendDataToApi(url, model, "POST");
-        await alert(response.data.message);
+        alert(response.data.message);
     }
 
     return(

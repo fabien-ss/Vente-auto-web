@@ -6,8 +6,11 @@ import { sendDataToApi } from '../fonction/fonction';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constante/constante';
 
+import Loading from "../assets/loading.gif";
+
 function LoginClient() {
 
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
     const [state, setState] = useState({
       email: "fabien@test.test",
@@ -24,28 +27,27 @@ function LoginClient() {
     }
 
     useEffect(() => {
-      console.log("state updated", state);
+     
     }, [state]);
 
     async function sendData(event){
       event.preventDefault();
       console.log("preparing to send data");
       const url = API_URL + "/admin/login";
+      setLoading(true);
       const response = await sendDataToApi(url, state, 'POST');
+      setLoading(false);
       try{
-        if(response.message === "error"){
-          throw new Error(response.message);
+        if(response.error !== null){
+          throw new Error(response.error);
         }
-        console.log("response", response);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", response.data.user);
-        console.log("token", response);
-       navigate("/back-office");
+        navigate("/back-office");
       }catch(Error){
-        console.log("response", response);
-        alert(response.data.error);
+          console.log("response", response);
+          alert(Error.message);
       }
-      console.log("data ", state);
     }
 
     return(
@@ -93,10 +95,9 @@ function LoginClient() {
                           <button class="btn btn-primary w-100" type="submit">Login</button>
                         </div>
                         <div class="col-12">
-                          <p class="small mb-0">Don't have account? <a href='register-admin' > Create an account here </a></p>
+                          {loading & <img src={Loading} alt=""/>}
                         </div>
                       </form>
-    
                     </div>
                   </div>
     

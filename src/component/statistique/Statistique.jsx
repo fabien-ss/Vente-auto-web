@@ -3,9 +3,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { API_URL } from "../../constante/constante";
 import { sendGetRequest } from "../../fonction/fonction";
 import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
-import { Bar } from "react-chartjs-2";
+import { Bar } from 'react-chartjs-2';
 
 import { CategoryScale, Chart, LinearScale, BarElement, ArcElement } from "chart.js";
+import Loading from "../../assets/loading.gif";
 
 Chart.register(LinearScale);
 Chart.register(CategoryScale);
@@ -21,7 +22,9 @@ function Statistique() {
   const [anneeMarque, setAnneeMarque] = useState(new Date().getFullYear());
   const [anneeModele, setAnneeModele] = useState(new Date().getFullYear());
 
+  const [isLoading, setIsLoading] = useState(false);
   const update = useCallback(async () => {
+    setIsLoading(true);
     if ((annee === "") | (annee === null) | (annee.length === 0))
       setAnnee(new Date().getFullYear());
     if (
@@ -47,7 +50,7 @@ function Statistique() {
     setNombreAnnonceParAnnee(data.data.stat);
     setMarqueVenduParAnnnee(data2.data.stat);
     setModeleVenduParAnnnee(data3.data.stat);
-    console.log("data ", data.data.pending);
+    setIsLoading(false);
   }, [annee, anneeMarque, anneeModele]); // Add all dependencies here
 
   useEffect(() => {
@@ -58,17 +61,22 @@ function Statistique() {
     <div className="container py-4">
       <div className="row mb-3">
         <div className="col-12">
+          
           <h5 className="mb-3">Annonce reçus en {annee}</h5>
-          <input
-            type="number"
-            name="annee"
-            onChange={(e) => {
-              setAnnee(e.target.value);
-            }}
-            onKeyUp={(e) => {
-              update();
-            }}
-          ></input>
+          <div style={{display: "inline-block", padding: "5%"}}>
+
+            <input
+              type="number"
+              name="annee"
+              onChange={(e) => {
+                setAnnee(e.target.value);
+              }}
+              onKeyUp={(e) =>{
+                update();}
+              }
+            ></input>
+              {isLoading && <img width="70px" height="50px" src={Loading} alt="loading ..."/>}
+            </div>
           <Bar
             data={{
               labels: nombreAnnonceParAnnee?.map((element) => element.nom),
@@ -100,9 +108,9 @@ function Statistique() {
           <input
             type="number"
             onChange={(e) => setAnneeMarque(e.target.value)}
-            onKeyUp={(e) => {
-              update();
-            }}
+            onKeyUp={(e) =>{
+              update();}
+            }
           ></input>
           <Bar
             data={{
@@ -135,33 +143,44 @@ function Statistique() {
           <input
             type="number"
             onChange={(e) => setAnneeModele(e.target.value)}
-            onKeyUp={(e) => {
-              update();
-            }}
+            onKeyUp={(e) =>{
+              update();}
+            }
           ></input>
-          <Bar
+          <div className="horizontal-bar-chart">
+        <Bar
             data={{
-              labels: modeleVenduParAnnnee?.map((element) => element.modeleNom),
-              datasets: [
-                {
-                  label: "Modele reçus en " + annee,
-                  data: modeleVenduParAnnnee?.map((element) => element.nombre),
-                  backgroundColor: "rgba(75,192,192,0.6)",
-                },
-              ],
+                labels: modeleVenduParAnnnee?.map((element) => element.modeleNom),
+                datasets: [
+                    {
+                        label: "Modele reçus en " + annee,
+                        data: modeleVenduParAnnnee?.map((element) => element.nombre),
+                        backgroundColor: "rgba(75,192,192,0.6)",
+                    },
+                ],
             }}
             options={{
-              scales: {
-                xAxes: [
-                  {
-                    ticks: {
-                      beginAtZero: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
                     },
-                  },
-                ],
-              },
-            }}
-          />
+                    title: {
+                        display: true,
+                        text: 'Chart.js Horizontal Bar Chart'
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+                }}
+              />
+          </div>
         </div>
       </div>
     </div>
