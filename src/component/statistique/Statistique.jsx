@@ -4,7 +4,6 @@ import { API_URL } from "../../constante/constante";
 import { sendGetRequest } from "../../fonction/fonction";
 import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
 import { Bar } from "react-chartjs-2";
-import { Doughnut } from "react-chartjs-2";
 
 import { CategoryScale, Chart, LinearScale, BarElement, ArcElement } from "chart.js";
 
