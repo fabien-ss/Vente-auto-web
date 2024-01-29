@@ -36,8 +36,10 @@ function Modele(){
                 return { idAxe: a.idAxe, axeValue: checkedBoxes };
             })
         };
-        const response = await sendDataToApi('http://localhost:8080/modele', model, "POST");
+        const url = API_URL + "/modele";
+        const response = await sendDataToApi(url, model, "POST");
         alert(response.status);
+        window.location.reload();
     }
 
     return(

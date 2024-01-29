@@ -16,6 +16,8 @@ function Marque(){
         console.log("api url ", url);
         const response = await sendDataToApi(url, data, "POST");
         alert(response.status);
+        window.location.reload();
+
     }
 
     return(
