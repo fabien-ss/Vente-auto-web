@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../assets/css/style.css';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css';
 
-function SideBar({countAnnonce}) {
+function SideBar() {
 
     const [showCount, setShowCount] = useState(true);
     useEffect(() =>{
@@ -17,7 +17,7 @@ function SideBar({countAnnonce}) {
             <li className="nav-item">
                 <Link to="/back-office/annonce" className="nav-link" onClick={e=>setShowCount(!showCount)}>
                     <i className="bi bi-grid"></i>
-                    <span>Annonces {showCount && countAnnonce }</span>
+                    <span>Annonces</span>
                 </Link>
             </li>
             <li className="nav-item">
