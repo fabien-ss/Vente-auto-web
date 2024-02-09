@@ -26,7 +26,7 @@ function CardAnnonce({ annonce, reload })
  
   return (
      <div className="card">
-           <img className="card-img-top" src={"data:image/png;base64,"+annonce.photoSet[0].text} alt="" />
+           <img className="card-img-top" src={"data:image/png;base64,"+annonce.photoSet[0]?.text} alt="" />
          
          <div className="card-body">
              <h5 className="card-title">Description: {annonce.description}</h5>
