@@ -4,13 +4,13 @@ import { API_URL } from "../../../constante/constante";
 function CardAnnonce({ annonce, reload }) 
 {
   const [showPopup] = useState(false);
-  const [idAnnonce, setIdAnnonce] = useState();
-  const [etat, setEtat] = useState();
+  const [idAnnonce] = useState();
+  // const [etat] = useState();
  
   const handleClick = async () => {
      const data = {
       "idAnnonce": idAnnonce,
-      "etat": etat
+      "etat": 20
      };
      const url = API_URL + "/annonce/admin";
      console.log("url: " + url);
@@ -19,14 +19,15 @@ function CardAnnonce({ annonce, reload })
      reload();
   };
 
-  const handleChange = (event) => {
-    setIdAnnonce(annonce.idAnnonce);
-    setEtat(event.target.value);
-  }
+  // const handleChange = (event) => {
+  //   setIdAnnonce(annonce.idAnnonce);
+  //   setEtat(event.target.value);
+  // }
  
   return (
      <div className="card">
-           <img className="card-img-top" src={"data:image/png;base64,"+annonce.photoSet[0]?.text} alt="" />
+          
+           <img className="card-img-top" src={"data:image/png;base64,"+annonce.photoSet[0]?.fieldBytes} alt="" />
          
          <div className="card-body">
              <h5 className="card-title">Description: {annonce.description}</h5>
@@ -35,13 +36,6 @@ function CardAnnonce({ annonce, reload })
               <label>Etat</label>
              
               <div className="row">
-                <div className="col-6">
-                  <select className="form-select" onChange={e => handleChange(e)} value={20}>
-                    <option></option>
-                    <option value={20}>Valider</option>
-                    <option value={-10}>Retirer</option>
-                  </select>
-                </div>
                 <div className="col-6">
                   <button className="btn btn-primary" type="button" onClick={e => {handleClick()}}>Valider</button>
 
@@ -60,7 +54,7 @@ function CardAnnonce({ annonce, reload })
                  </div>
                  <div className="modal-body">
                   {annonce.photoSet.map((photo, index) =>(
-                     <img key={index} className="img-fluid" src={"data:image/png;base64,"+photo.text} alt="" />
+                     <img key={index} className="img-fluid" src={"data:image/png;base64,"+photo.fieldBytes} alt="" />
                    ))}
                  </div>
                  <div className="modal-footer">
