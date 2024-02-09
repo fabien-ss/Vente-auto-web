@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import '../assets/css/style.css';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css';
 import { sendDataToApi } from '../fonction/fonction';
-// Avant
-// import { useHistory } from 'react-router-dom';
 
-// Après
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constante/constante';
 
+import Loading from "../assets/loading.gif";
+
 function LoginClient() {
 
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
     const [state, setState] = useState({
-      email: "",
-      motDePasse: ""
+      email: "fabien@test.test",
+      motDePasse: "fabien"
     })
 
     const handleChange = (event) => {
@@ -27,28 +27,27 @@ function LoginClient() {
     }
 
     useEffect(() => {
-      console.log("state updated", state);
+     
     }, [state]);
 
     async function sendData(event){
       event.preventDefault();
       console.log("preparing to send data");
       const url = API_URL + "/admin/login";
+      setLoading(true);
       const response = await sendDataToApi(url, state, 'POST');
+      setLoading(false);
       try{
-        if(response.message == "error"){
-          throw new Error(response.message);
+        if(response.error !== null){
+          throw new Error(response.error);
         }
-        console.log("response", response);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", response.data.user);
-        console.log("token", response);
-       navigate("/back-office");
+        navigate("/back-office");
       }catch(Error){
-        console.log("response", response);
-        alert(response.data.error);
+          console.log("response", response);
+          alert(Error.message);
       }
-      console.log("data ", state);
     }
 
     return(
@@ -75,14 +74,14 @@ function LoginClient() {
                           <label for="yourUsername" class="form-label">Email</label>
                           <div class="input-group has-validation">
                             <span class="input-group-text" id="inputGroupPrepend">@</span>
-                            <input type="email" name="email" onChange={e => handleChange(e)} class="form-control" id="yourUsername" required/>
+                            <input type="email" name="email" value={state.email} onChange={e => handleChange(e)} class="form-control" id="yourUsername" required/>
                             <div class="invalid-feedback">Please enter your email.</div>
                           </div>
                         </div>
     
                         <div class="col-12">
                           <label for="yourPassword" class="form-label">Password</label>
-                          <input type="password" name="motDePasse" onChange={e => handleChange(e)} class="form-control" id="yourPassword" required/>
+                          <input type="password" name="motDePasse" value={state.motDePasse} onChange={e => handleChange(e)} class="form-control" id="yourPassword" required/>
                           <div class="invalid-feedback">Please enter your password!</div>
                         </div>
     
@@ -96,10 +95,9 @@ function LoginClient() {
                           <button class="btn btn-primary w-100" type="submit">Login</button>
                         </div>
                         <div class="col-12">
-                          <p class="small mb-0">Don't have account? <a href='register-admin' > Create an account here </a></p>
+                          {loading & <img src={Loading} alt=""/>}
                         </div>
                       </form>
-    
                     </div>
                   </div>
     

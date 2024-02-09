@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../assets/css/style.css';
 import '../assets/vendor/bootstrap/css/bootstrap.min.css'; 
 import { sendDataToApi } from '../fonction/fonction';
-import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constante/constante';
 
 function RegisterAdmin() {
 
-  const navigate = useNavigate();
   const [state, setState] = useState({
     nom: "fabien",
     prenom: "abie",
@@ -42,6 +40,7 @@ function RegisterAdmin() {
       alert(response.data.error);
     }
     console.log("data ", response);
+    window.location.reload();
   }
     return(
         <main>

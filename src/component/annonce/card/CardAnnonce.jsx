@@ -3,7 +3,7 @@ import { sendDataToApi } from "../../../fonction/fonction";
 import { API_URL } from "../../../constante/constante";
 function CardAnnonce({ annonce, reload }) 
 {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup] = useState(false);
   const [idAnnonce, setIdAnnonce] = useState();
   const [etat, setEtat] = useState();
  
@@ -15,7 +15,7 @@ function CardAnnonce({ annonce, reload })
      const url = API_URL + "/annonce/admin";
      console.log("url: " + url);
      console.log("data ",data);
-     const response = await sendDataToApi(url,data, "PUT");
+     await sendDataToApi(url,data, "PUT");
      reload();
   };
 
@@ -26,18 +26,27 @@ function CardAnnonce({ annonce, reload })
  
   return (
      <div className="card">
-           <img className="card-img-top" src={"data:image/png;base64,"+annonce.photoSet[0].text} alt="" />
+           <img className="card-img-top" src={"data:image/png;base64,"+annonce.photoSet[0]?.text} alt="" />
          
          <div className="card-body">
              <h5 className="card-title">Description: {annonce.description}</h5>
              <p className="card-text">Annonce: {annonce.annee}</p>
              <p className="card-text">Kilometrage: {annonce.kilometrage}</p>
               <label>Etat</label>
-              <select className="form-select" onChange={e => handleChange(e)}>
-                  <option value={20}>Valider</option>
-                  <option value={-10}>Retirer</option>
-              </select>
-             <button className="btn btn-primary" type="button" onClick={e => {handleClick()}}>Valider</button>
+             
+              <div className="row">
+                <div className="col-6">
+                  <select className="form-select" onChange={e => handleChange(e)} value={20}>
+                    <option></option>
+                    <option value={20}>Valider</option>
+                    <option value={-10}>Retirer</option>
+                  </select>
+                </div>
+                <div className="col-6">
+                  <button className="btn btn-primary" type="button" onClick={e => {handleClick()}}>Valider</button>
+
+                </div>
+              </div>
          </div>
          {showPopup && (
            <div className="modal" tabIndex="-1" role="dialog">

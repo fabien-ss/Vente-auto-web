@@ -1,17 +1,15 @@
 import React ,{ useEffect, useState } from "react";
 import "./Modele.css";
 import { sendGetRequest, sendDataToApi } from "../../fonction/fonction";
-import { Link, Element } from 'react-scroll';
 import { API_URL } from "../../constante/constante";
 
 function Modele(){
 
-    const [marque, setMarque] = useState();
+    const [marque] = useState();
     const [listMarque, setListMarque] = useState([]);
     const [axe, setAxe] = useState([]);
     const [displayAxe, setDisplayAxe] = useState(false);
-    const [model, setModel] = useState({});
-
+    
     useEffect(() => {
         async function fetchMarques() {
             const url = API_URL + "/marque";
@@ -38,10 +36,9 @@ function Modele(){
                 return { idAxe: a.idAxe, axeValue: checkedBoxes };
             })
         };
-        setModel(model);
-        console.log(model);
-        const response = await sendDataToApi('http://localhost:8080/modele', model, "POST");
-        alert(response.status);
+        const url = API_URL + "/modele";
+        const response = await sendDataToApi(url, model, "POST");
+        alert(response.data.message);
     }
 
     return(
@@ -68,8 +65,8 @@ function Modele(){
                     <div className="row">
                         <h1>Laissez vide si information inutile</h1>
                         {axe.map((a, index) => (
-                            <div className="card me-3 col-3" > 
-                                <img class="card-img-top" src = "https://static.vecteezy.com/ti/vecteur-libre/p1/3555424-gear-settings-thin-line-symbol-cogwheel-icon-innovation-logo-vector-illustration-gratuit-vectoriel.jpg"/>
+                            <div className="card col-3 me-5" > 
+                                <img class="card-img-top" alt="ok" src = "https://static.vecteezy.com/ti/vecteur-libre/p1/3555424-gear-settings-thin-line-symbol-cogwheel-icon-innovation-logo-vector-illustration-gratuit-vectoriel.jpg"/>
                                 <div className="card-header">
                                     {a.nom}
                                     </div>
